@@ -2,8 +2,6 @@
 
 A fantasy/D&D-inspired browser app that helps you choose between the latest large language models—by rolling a magical die!
 
-![Screenshot of LLM Dice Roller](screenshot.png)
-
 ## Features
 - **Fantasy/D&D Aesthetic:** Parchment textures, magical fonts, and a glowing artifact button.
 - **3D Animated Dice:** Roll a six-sided die to randomly select one of six top LLMs.

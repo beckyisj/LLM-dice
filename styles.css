@@ -1,0 +1,271 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'MedievalSharp', cursive;
+    min-height: 100vh;
+    background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
+    background-color: #2d102e;
+    color: #3a2a1f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #8b4513;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+/* Dice container styles */
+.dice-container {
+    margin: 2rem 0;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.dice {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1.5s cubic-bezier(.36,.07,.19,.97);
+    margin: 0 auto;
+    background: none;
+}
+
+.dice-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f5deb3, #d2b48c);
+    border: 8px solid #8b4513;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.5);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.dice-face::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/old-map.png');
+    opacity: 0.2;
+    border-radius: 12px;
+}
+
+.dice-face::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
+    border-radius: 12px;
+}
+
+.dice-face:nth-child(1) { transform: translateZ(100px); }
+.dice-face:nth-child(2) { transform: rotateY(180deg) translateZ(100px); }
+.dice-face:nth-child(3) { transform: rotateY(90deg) translateZ(100px); }
+.dice-face:nth-child(4) { transform: rotateY(-90deg) translateZ(100px); }
+.dice-face:nth-child(5) { transform: rotateX(90deg) translateZ(100px); }
+.dice-face:nth-child(6) { transform: rotateX(-90deg) translateZ(100px); }
+
+.dice-face[data-face="2"] .llm-name,
+.dice-face:nth-child(2) .llm-name,
+.dice-face[data-face="4"] .llm-name,
+.dice-face:nth-child(4) .llm-name,
+.dice-face[data-face="6"] .llm-name,
+.dice-face:nth-child(6) .llm-name {
+    transform: rotate(180deg);
+}
+
+.llm-name {
+    font-size: 1.5rem;
+    font-weight: normal;
+    text-align: center;
+    padding: 20px;
+    color: #3a2a1f;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+/* Button styles */
+.roll-button {
+    background: linear-gradient(135deg, #8b4513, #654321);
+    color: #f5deb3;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+    font-family: 'MedievalSharp', cursive;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(139, 69, 19, 0.5);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.roll-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.7);
+}
+
+.roll-button:active {
+    transform: translateY(1px);
+}
+
+.roll-button::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ffd700, #ffa500, #ffd700);
+    z-index: -1;
+    border-radius: 10px;
+    opacity: 0.5;
+    animation: glow 2s linear infinite;
+}
+
+/* Animations */
+@keyframes glow {
+    0% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.5; }
+}
+
+.rolling {
+    animation: roll 1.5s cubic-bezier(.36,.07,.19,.97) forwards;
+}
+
+@keyframes roll {
+    0% {
+        transform: rotateX(0) rotateY(0) rotateZ(0);
+    }
+    25% {
+        transform: rotateX(180deg) rotateY(90deg) rotateZ(45deg);
+    }
+    50% {
+        transform: rotateX(360deg) rotateY(180deg) rotateZ(90deg);
+    }
+    75% {
+        transform: rotateX(540deg) rotateY(270deg) rotateZ(135deg);
+    }
+    100% {
+        transform: rotateX(720deg) rotateY(360deg) rotateZ(180deg);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .dice {
+        width: 180px;
+        height: 180px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .llm-name {
+        font-size: 1.3rem;
+    }
+    
+    .roll-button {
+        padding: 12px 24px;
+        font-size: 1.3rem;
+    }
+}
+
+.flavour-text {
+    font-family: 'MedievalSharp', cursive;
+    color: #d9b07c;
+    font-size: 1.2rem;
+    margin: 1.5rem 0 1.5rem 0;
+    text-align: center;
+    text-shadow: 0 0 8px #8b4513, 0 2px 4px rgba(0,0,0,0.4);
+    letter-spacing: 1px;
+    line-height: 1.4;
+    max-width: 90vw;
+}
+
+@media (max-width: 600px) {
+    .flavour-text {
+        font-size: 1rem;
+        margin: 1rem 0 1rem 0;
+    }
+}
+
+.creator-banner {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #e6d3b3 80%, #d9b07c 100%);
+    border: 2px solid #8b4513;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(44, 24, 16, 0.18), 0 0 0 4px #8b451344;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 15px;
+    color: #8b4513;
+    padding: 8px 28px;
+    text-align: center;
+    z-index: 100;
+    letter-spacing: 0.5px;
+    min-width: 220px;
+    max-width: 90vw;
+    opacity: 0.97;
+}
+
+.creator-banner a {
+    color: #b97c2a;
+    text-decoration: none;
+    font-weight: bold;
+    transition: text-shadow 0.2s, text-decoration 0.2s;
+}
+
+.creator-banner a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 8px #ffd700, 0 0 2px #b97c2a;
+}
+
+@media (max-width: 600px) {
+    .creator-banner {
+        font-size: 13px;
+        padding: 7px 10px;
+        border-radius: 12px;
+        bottom: 10px;
+    }
+} 

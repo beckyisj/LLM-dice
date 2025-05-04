@@ -108,6 +108,13 @@ h1 {
     transform: rotate(180deg);
 }
 
+.dice-face:nth-child(4) .llm-name { /* Llama 3.1 (left) */
+    transform: rotateZ(180deg);
+}
+.dice-face:nth-child(6) .llm-name { /* DeepSeek R1 (bottom) */
+    transform: rotateZ(180deg);
+}
+
 .llm-name {
     font-size: 1.5rem;
     font-weight: normal;

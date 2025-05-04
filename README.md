@@ -10,7 +10,7 @@ A fantasy/D&D-inspired browser app that helps you choose between the latest larg
 - **Flavour Text & Credits:** Adds a touch of whimsy and credits the creator.
 
 ## Try It Live
-[View on GitHub Pages](https://your-username.github.io/llm-dice-roller/)
+[View on GitHub Pages](https://beckyisj.github.io/LLM-dice/)
 
 ## How to Use
 1. Click the **Roll the LLM Die** button.
